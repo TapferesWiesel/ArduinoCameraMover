@@ -1,26 +1,31 @@
+#include "arduino.h"
+
+
 long Distance = 0;  // Record the number of steps we've taken
 
-void setup() {                
-  pinMode(8, OUTPUT);     
+enum State {INPUT_DISTANCE, INPUT_TIME, WAITING};
+
+void setup() {
+  pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
-  
+
 }
 
 void loop() {
   digitalWrite(9, HIGH);
-  delayMicroseconds(50);          
-  digitalWrite(9, LOW); 
+  delayMicroseconds(50);
+  digitalWrite(9, LOW);
   delayMicroseconds(50);
   Distance = Distance + 1;   // record this step
-  
-   
-  
+
+
+
   // Check to see if we are at the end of our move
   if (Distance == 1600)
   {
-  
+
     // We are! Reverse direction (invert DIR signal)
     if (digitalRead(8) == LOW)
     {
@@ -37,4 +42,3 @@ void loop() {
     delay(500);
   }
 }
-
