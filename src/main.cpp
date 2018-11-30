@@ -3,7 +3,9 @@
 
 long Distance = 0;  // Record the number of steps we've taken
 
-enum State {INPUT_DISTANCE, INPUT_TIME, WAITING};
+enum State {SEARCHING_ZERO, INPUT_DISTANCE, INPUT_TIME, WAITING};
+
+State currentState = SEARCHING_ZERO;
 
 void setup() {
   pinMode(8, OUTPUT);
@@ -18,7 +20,7 @@ void loop() {
   delayMicroseconds(50);
   digitalWrite(9, LOW);
   delayMicroseconds(50);
-  Distance = Distance + 1;   // record this step
+  Distance++;   // record this step
 
 
 
